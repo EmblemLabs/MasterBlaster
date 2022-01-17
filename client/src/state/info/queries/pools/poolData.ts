@@ -2,10 +2,7 @@
 import { useEffect, useState } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
-import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
-import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamps'
 import { PoolData } from 'state/info/types'
-import { getChangeForPeriod, getLpFeesAndApr, getPercentChange } from 'views/Info/utils/infoDataHelpers'
 
 interface PoolFields {
   id: string
@@ -136,8 +133,9 @@ interface PoolDatas {
  */
 const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
   const [fetchState, setFetchState] = useState<PoolDatas>({ error: false })
-  const [t24h, t48h, t7d, t14d] = getDeltaTimestamps()
-  const { blocks, error: blockError } = useBlocksFromTimestamps([t24h, t48h, t7d, t14d])
+  // const [t24h, t48h, t7d, t14d] = getDeltaTimestamps()
+  // const { blocks, error: blockError } = useBlocksFromTimestamps([t24h, t48h, t7d, t14d])
+  const { blocks, error: blockError } = { blocks: [], error: {} };
   const [block24h, block48h, block7d, block14d] = blocks ?? []
 
   useEffect(() => {
@@ -167,29 +165,29 @@ const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
           const week: FormattedPoolFields | undefined = formattedPoolData7d[address]
           const twoWeeks: FormattedPoolFields | undefined = formattedPoolData14d[address]
 
-          const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
-            current?.volumeUSD,
-            oneDay?.volumeUSD,
-            twoDays?.volumeUSD,
-          )
-          const [volumeUSDWeek, volumeUSDChangeWeek] = getChangeForPeriod(
-            current?.volumeUSD,
-            week?.volumeUSD,
-            twoWeeks?.volumeUSD,
-          )
+          // const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
+          //   current?.volumeUSD,
+          //   oneDay?.volumeUSD,
+          //   twoDays?.volumeUSD,
+          // )
+          // const [volumeUSDWeek, volumeUSDChangeWeek] = getChangeForPeriod(
+          //   current?.volumeUSD,
+          //   week?.volumeUSD,
+          //   twoWeeks?.volumeUSD,
+          // )
 
           const liquidityUSD = current ? current.reserveUSD : 0
 
-          const liquidityUSDChange = getPercentChange(current?.reserveUSD, oneDay?.reserveUSD)
+          // const liquidityUSDChange = getPercentChange(current?.reserveUSD, oneDay?.reserveUSD)
 
           const liquidityToken0 = current ? current.reserve0 : 0
           const liquidityToken1 = current ? current.reserve1 : 0
 
-          const { totalFees24h, totalFees7d, lpFees24h, lpFees7d, lpApr7d } = getLpFeesAndApr(
-            volumeUSD,
-            volumeUSDWeek,
-            liquidityUSD,
-          )
+          // const { totalFees24h, totalFees7d, lpFees24h, lpFees7d, lpApr7d } = getLpFeesAndApr(
+          //   volumeUSD,
+          //   volumeUSDWeek,
+          //   liquidityUSD,
+          // )
 
           if (current) {
             accum[address] = {
@@ -206,17 +204,17 @@ const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
               },
               token0Price: current.token0Price,
               token1Price: current.token1Price,
-              volumeUSD,
-              volumeUSDChange,
-              volumeUSDWeek,
-              volumeUSDChangeWeek,
-              totalFees24h,
-              totalFees7d,
-              lpFees24h,
-              lpFees7d,
-              lpApr7d,
+              volumeUSD: 0,
+              volumeUSDChange: 0,
+              volumeUSDWeek: 0,
+              volumeUSDChangeWeek: 0,
+              totalFees24h: 0,
+              totalFees7d: 0,
+              lpFees24h: 0,
+              lpFees7d: 0,
+              lpApr7d: 0,
               liquidityUSD,
-              liquidityUSDChange,
+              liquidityUSDChange: 0,
               liquidityToken0,
               liquidityToken1,
             }
