@@ -5,19 +5,15 @@ import { batch, useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useFastFresh, useSlowFresh } from 'hooks/useRefresh'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getAprData } from 'views/Pools/helpers'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchCakeVaultPublicData,
   fetchCakeVaultUserData,
   fetchCakeVaultFees,
   fetchPoolsStakingLimitsAsync,
   fetchIfoPoolFees,
-  fetchIfoPoolPublicData,
   fetchIfoPoolUserAndCredit,
   initialPoolVaultState,
-  fetchCakePoolPublicDataAsync,
   fetchCakePoolUserDataAsync,
 } from '.'
 import { State, DeserializedPool, VaultKey } from '../types'
@@ -73,9 +69,9 @@ export const useFetchCakeVault = () => {
   const fastRefresh = useFastFresh()
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(fetchCakeVaultPublicData())
-  }, [dispatch, fastRefresh])
+  // useEffect(() => {
+  //   dispatch(fetchCakeVaultPublicData())
+  // }, [dispatch, fastRefresh])
 
   useEffect(() => {
     dispatch(fetchCakeVaultUserData({ account }))
@@ -91,14 +87,14 @@ export const useFetchIfoPool = (fetchCakePool = true) => {
   const fastRefresh = useFastFresh()
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    batch(() => {
-      if (fetchCakePool) {
-        dispatch(fetchCakePoolPublicDataAsync())
-      }
-      dispatch(fetchIfoPoolPublicData())
-    })
-  }, [dispatch, fastRefresh, fetchCakePool])
+  // useEffect(() => {
+  //   batch(() => {
+  //     if (fetchCakePool) {
+  //       dispatch(fetchCakePoolPublicDataAsync())
+  //     }
+  //     dispatch(fetchIfoPoolPublicData())
+  //   })
+  // }, [dispatch, fastRefresh, fetchCakePool])
 
   useEffect(() => {
     if (account) {
@@ -227,10 +223,10 @@ export const useIfoWithApr = () => {
   const ifoPoolWithApr = useMemo(() => {
     const ifoPool = { ...poolZero }
     ifoPool.vaultKey = VaultKey.IfoPool
-    ifoPool.apr = getAprData(ifoPool, performanceFeeAsDecimal).apr
+    ifoPool.apr = 0
     ifoPool.rawApr = poolZero.apr
     return ifoPool
-  }, [performanceFeeAsDecimal, poolZero])
+  }, [poolZero])
 
   return {
     pool: ifoPoolWithApr,

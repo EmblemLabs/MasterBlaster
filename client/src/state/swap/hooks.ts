@@ -12,7 +12,6 @@ import { useTranslation } from 'contexts/Localization'
 import { isAddress } from 'utils'
 import { computeSlippageAdjustedAmounts } from 'utils/prices'
 import getLpAddress from 'utils/getLpAddress'
-import { getTokenAddress } from 'views/Swap/components/Chart/utils'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import {
@@ -30,14 +29,12 @@ import { useUserSlippageTolerance } from '../user/hooks'
 import fetchPairPriceData from './fetch/fetchPairPriceData'
 import {
   normalizeChartData,
-  normalizeDerivedChartData,
   normalizeDerivedPairDataByActiveToken,
   normalizePairDataByActiveToken,
 } from './normalizers'
 import { PairDataTimeWindowEnum } from './types'
 import { derivedPairByDataIdSelector, pairByDataIdSelector } from './selectors'
 import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from './constants'
-import fetchDerivedPriceData from './fetch/fetchDerivedPriceData'
 import { pairHasEnoughLiquidity } from './fetch/utils'
 
 export function useSwapState(): AppState['swap'] {
@@ -136,8 +133,8 @@ export function useSingleTokenSwapInfo(): { [key: string]: number } {
 
   const inputCurrency = useCurrency(inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId)
-  const token0Address = getTokenAddress(inputCurrencyId)
-  const token1Address = getTokenAddress(outputCurrencyId)
+  const token0Address = '0x123'
+  const token1Address = '0x234'
 
   const parsedAmount = tryParseAmount('1', inputCurrency ?? undefined)
 
@@ -369,13 +366,7 @@ export const useFetchPairPrices = ({
         // Try to get at least derived data for chart
         // This is used when there is no direct data for pool
         // i.e. when multihops are necessary
-        const derivedData = await fetchDerivedPriceData(token0Address, token1Address, timeWindow)
-        if (derivedData) {
-          const normalizedDerivedData = normalizeDerivedChartData(derivedData)
-          dispatch(updateDerivedPairData({ pairData: normalizedDerivedData, pairId, timeWindow }))
-        } else {
-          dispatch(updateDerivedPairData({ pairData: [], pairId, timeWindow }))
-        }
+        dispatch(updateDerivedPairData({ pairData: [], pairId, timeWindow }))
       } catch (error) {
         console.error('Failed to fetch derived prices for chart', error)
         dispatch(updateDerivedPairData({ pairData: [], pairId, timeWindow }))

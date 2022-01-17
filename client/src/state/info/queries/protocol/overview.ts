@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
-import { getChangeForPeriod, getPercentChange } from 'views/Info/utils/infoDataHelpers'
 import { ProtocolData } from 'state/info/types'
-import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
-import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamps'
 
 interface PancakeFactory {
   totalTransactions: string
@@ -58,8 +55,10 @@ const useFetchProtocolData = (): ProtocolFetchState => {
   const [fetchState, setFetchState] = useState<ProtocolFetchState>({
     error: false,
   })
-  const [t24, t48] = getDeltaTimestamps()
-  const { blocks, error: blockError } = useBlocksFromTimestamps([t24, t48])
+  // const [t24, t48] = getDeltaTimestamps()
+  // const { blocks, error: blockError } = useBlocksFromTimestamps([t24, t48])
+  const [t24, t48] = [0 , 0]
+  const { blocks, error: blockError } = { blocks: [], error: {}}
   const [block24, block48] = blocks ?? []
 
   useEffect(() => {
@@ -77,25 +76,25 @@ const useFetchProtocolData = (): ProtocolFetchState => {
           error: true,
         })
       } else {
-        const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
-          overviewData.totalVolumeUSD,
-          overviewData24.totalVolumeUSD,
-          overviewData48.totalVolumeUSD,
-        )
-        const liquidityUSDChange = getPercentChange(overviewData.totalLiquidityUSD, overviewData24.totalLiquidityUSD)
-        // 24H transactions
-        const [txCount, txCountChange] = getChangeForPeriod(
-          overviewData.totalTransactions,
-          overviewData24.totalTransactions,
-          overviewData48.totalTransactions,
-        )
+        // const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
+        //   overviewData.totalVolumeUSD,
+        //   overviewData24.totalVolumeUSD,
+        //   overviewData48.totalVolumeUSD,
+        // )
+        // const liquidityUSDChange = getPercentChange(overviewData.totalLiquidityUSD, overviewData24.totalLiquidityUSD)
+        // // 24H transactions
+        // const [txCount, txCountChange] = getChangeForPeriod(
+        //   overviewData.totalTransactions,
+        //   overviewData24.totalTransactions,
+        //   overviewData48.totalTransactions,
+        // )
         const protocolData: ProtocolData = {
-          volumeUSD,
-          volumeUSDChange: typeof volumeUSDChange === 'number' ? volumeUSDChange : 0,
+          volumeUSD: 0,
+          volumeUSDChange: 0,
           liquidityUSD: overviewData.totalLiquidityUSD,
-          liquidityUSDChange,
-          txCount,
-          txCountChange,
+          liquidityUSDChange: 0,
+          txCount: 0,
+          txCountChange: 0,
         }
         setFetchState({
           error: false,

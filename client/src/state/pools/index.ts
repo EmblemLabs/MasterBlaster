@@ -3,8 +3,6 @@ import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import {
   AppThunk,
-  CakeVault,
-  IfoCakeVault,
   IfoVaultUser,
   PoolsState,
   SerializedPool,
@@ -17,7 +15,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getCakeContract, getMasterchefContract } from 'utils/contractHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { simpleRpcProvider } from 'utils/providers'
-import { fetchIfoPoolFeesData, fetchPublicIfoPoolData } from './fetchIfoPoolPublic'
+import { fetchIfoPoolFeesData } from './fetchIfoPoolPublic'
 import fetchIfoPoolUserData from './fetchIfoPoolUser'
 import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
 import {
@@ -26,7 +24,7 @@ import {
   fetchUserPendingRewards,
   fetchUserStakeBalances,
 } from './fetchPoolsUser'
-import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
+import { fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
 import { getTokenPricesFromFarm } from './helpers'
 
@@ -223,10 +221,10 @@ export const updateUserPendingReward =
     dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
   }
 
-export const fetchCakeVaultPublicData = createAsyncThunk<CakeVault>('cakeVault/fetchPublicData', async () => {
-  const publicVaultInfo = await fetchPublicVaultData()
-  return publicVaultInfo
-})
+// export const fetchCakeVaultPublicData = createAsyncThunk<CakeVault>('cakeVault/fetchPublicData', async () => {
+//   const publicVaultInfo = await fetchPublicVaultData()
+//   return publicVaultInfo
+// })
 
 export const fetchCakeVaultFees = createAsyncThunk<VaultFees>('cakeVault/fetchFees', async () => {
   const vaultFees = await fetchVaultFees()
@@ -241,10 +239,10 @@ export const fetchCakeVaultUserData = createAsyncThunk<VaultUser, { account: str
   },
 )
 
-export const fetchIfoPoolPublicData = createAsyncThunk<IfoCakeVault>('ifoPool/fetchPublicData', async () => {
-  const publicVaultInfo = await fetchPublicIfoPoolData()
-  return publicVaultInfo
-})
+// export const fetchIfoPoolPublicData = createAsyncThunk<IfoCakeVault>('ifoPool/fetchPublicData', async () => {
+//   const publicVaultInfo = await fetchPublicIfoPoolData()
+//   return publicVaultInfo
+// })
 
 export const fetchIfoPoolFees = createAsyncThunk<VaultFees>('ifoPool/fetchFees', async () => {
   const vaultFees = await fetchIfoPoolFeesData()
@@ -302,9 +300,9 @@ export const PoolsSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Vault public data that updates frequently
-    builder.addCase(fetchCakeVaultPublicData.fulfilled, (state, action: PayloadAction<CakeVault>) => {
-      state.cakeVault = { ...state.cakeVault, ...action.payload }
-    })
+    // builder.addCase(fetchCakeVaultPublicData.fulfilled, (state, action: PayloadAction<CakeVault>) => {
+    //   state.cakeVault = { ...state.cakeVault, ...action.payload }
+    // })
     // Vault fees
     builder.addCase(fetchCakeVaultFees.fulfilled, (state, action: PayloadAction<VaultFees>) => {
       const fees = action.payload
@@ -317,9 +315,9 @@ export const PoolsSlice = createSlice({
       state.cakeVault = { ...state.cakeVault, userData }
     })
     // Vault public data that updates frequently
-    builder.addCase(fetchIfoPoolPublicData.fulfilled, (state, action) => {
-      state.ifoPool = { ...state.ifoPool, ...action.payload }
-    })
+    // builder.addCase(fetchIfoPoolPublicData.fulfilled, (state, action) => {
+    //   state.ifoPool = { ...state.ifoPool, ...action.payload }
+    // })
     // Vault fees
     builder.addCase(fetchIfoPoolFees.fulfilled, (state, action: PayloadAction<VaultFees>) => {
       const fees = action.payload
