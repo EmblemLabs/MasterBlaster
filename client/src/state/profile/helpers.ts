@@ -54,7 +54,6 @@ export const getProfileAvatar = async (address: string) => {
       return null
     }
 
-    const profileResponse = await profileContract.getUserProfile(address)
     // const { tokenId, collectionAddress, isActive } = transformProfileResponse(profileResponse)
 
     const nft = null

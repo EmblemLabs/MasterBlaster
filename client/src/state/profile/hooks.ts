@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux'
 import { isAddress } from 'utils'
 import { useAppDispatch } from 'state'
 import usePreviousValue from 'hooks/usePreviousValue'
-import { getAchievements } from 'state/achievements/helpers'
 import { FetchStatus } from 'config/constants/types'
-import { State, ProfileState, Achievement } from '../types'
+import { State, ProfileState } from '../types'
 import { fetchProfile, fetchProfileAvatar, fetchProfileUsername } from '.'
 import { getProfile, GetProfileResponse } from './helpers'
 
@@ -50,38 +49,6 @@ export const useProfileForAddress = (address: string) => {
   }, [address])
 
   return profileState
-}
-
-export const useAchievementsForAddress = (address: string) => {
-  const [state, setState] = useState<{ achievements: Achievement[]; isFetching: boolean }>({
-    achievements: [],
-    isFetching: false,
-  })
-  const previousAddress = usePreviousValue(address)
-  const hasAddressChanged = previousAddress !== address
-
-  useEffect(() => {
-    const fetchProfileForAddress = async () => {
-      setState({ achievements: [], isFetching: true })
-      try {
-        const achievements = await getAchievements(address)
-        setState({ achievements, isFetching: false })
-      } catch (error) {
-        console.error(`Failed to fetch achievements for address ${address}`, error)
-        setState({ achievements: [], isFetching: false })
-      }
-    }
-    if (hasAddressChanged || (!state.isFetching && !state.achievements)) {
-      fetchProfileForAddress()
-    }
-  }, [state, address, hasAddressChanged])
-
-  // Clear state on account switch
-  useEffect(() => {
-    setState({ achievements: [], isFetching: true })
-  }, [address])
-
-  return state
 }
 
 export const useProfile = () => {
