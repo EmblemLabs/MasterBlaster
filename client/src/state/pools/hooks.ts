@@ -215,9 +215,6 @@ export const useIfoPoolCredit = () => {
 }
 
 export const useIfoWithApr = () => {
-  const {
-    fees: { performanceFeeAsDecimal },
-  } = useIfoPoolVault()
   const { pool: poolZero, userDataLoaded } = usePool(0)
 
   const ifoPoolWithApr = useMemo(() => {
