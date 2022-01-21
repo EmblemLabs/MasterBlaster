@@ -8,7 +8,6 @@ import predictionsReducer from './predictions'
 import profileReducer, { initialState as profileInitialState } from './profile'
 import teamsReducer from './teams'
 import blockReducer from './block'
-import lotteryReducer from './lottery'
 import infoReducer from './info'
 import { updateVersion } from './global/actions'
 import user, { initialState as userInitialState } from './user/reducer'
@@ -39,7 +38,6 @@ const store = configureStore({
     predictions: predictionsReducer,
     profile: profileReducer,
     teams: teamsReducer,
-    lottery: lotteryReducer,
     info: infoReducer,
 
     // Exchange
