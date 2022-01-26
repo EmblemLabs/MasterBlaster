@@ -6,17 +6,11 @@ import farmsReducer from './farms'
 import poolsReducer from './pools'
 import predictionsReducer from './predictions'
 import profileReducer, { initialState as profileInitialState } from './profile'
-import teamsReducer from './teams'
-import blockReducer from './block'
 import infoReducer from './info'
 import { updateVersion } from './global/actions'
 import user, { initialState as userInitialState } from './user/reducer'
 import transactions, { initialState as transactionsInitialState } from './transactions/reducer'
-import swap from './swap/reducer'
-import mint from './mint/reducer'
 import lists, { initialState as listsInitialState } from './lists/reducer'
-import burn from './burn/reducer'
-import multicall from './multicall/reducer'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists', 'profile']
 
@@ -32,21 +26,15 @@ const safeCloneDeep = <T>(state: T) => {
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {
-    block: blockReducer,
     farms: farmsReducer,
     pools: poolsReducer,
     predictions: predictionsReducer,
     profile: profileReducer,
-    teams: teamsReducer,
     info: infoReducer,
 
     // Exchange
     user,
     transactions,
-    swap,
-    mint,
-    burn,
-    multicall,
     lists,
   },
   middleware: (getDefaultMiddleware) => [

@@ -2,7 +2,6 @@ import Cookies from 'js-cookie'
 import { Profile } from 'state/types'
 import { PancakeProfile } from 'config/abi/types/PancakeProfile'
 import { getProfileContract } from 'utils/contractHelpers'
-import { getTeam } from 'state/teams/helpers'
 
 export interface GetProfileResponse {
   hasRegistered: boolean
@@ -92,7 +91,6 @@ export const getProfile = async (address: string): Promise<GetProfileResponse> =
 
     const profileResponse = await profileContract.getUserProfile(address)
     const { userId, points, teamId, tokenId, collectionAddress, isActive } = transformProfileResponse(profileResponse)
-    const team = await getTeam(teamId)
     const username = await getUsername(address)
     // let nftToken: NftToken
 
@@ -136,7 +134,7 @@ export const getProfile = async (address: string): Promise<GetProfileResponse> =
       collectionAddress,
       isActive,
       // nft: nftToken,
-      team,
+      // team,
     } as Profile
 
     return { hasRegistered, profile }
