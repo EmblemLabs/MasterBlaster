@@ -4,9 +4,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { useDispatch } from 'react-redux'
 import farmsReducer from './farms'
 import poolsReducer from './pools'
-import predictionsReducer from './predictions'
 import profileReducer, { initialState as profileInitialState } from './profile'
-import infoReducer from './info'
 import { updateVersion } from './global/actions'
 import user, { initialState as userInitialState } from './user/reducer'
 import transactions, { initialState as transactionsInitialState } from './transactions/reducer'
@@ -28,9 +26,7 @@ const store = configureStore({
   reducer: {
     farms: farmsReducer,
     pools: poolsReducer,
-    predictions: predictionsReducer,
     profile: profileReducer,
-    info: infoReducer,
 
     // Exchange
     user,
