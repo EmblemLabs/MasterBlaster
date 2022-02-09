@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { Token } from '@pancakeswap/sdk'
+import { Token } from '@uniswap/sdk'
 
 export type TranslatableText =
   | string
@@ -10,8 +10,8 @@ export type TranslatableText =
       }
     }
 export interface Address {
-  97?: string
-  56: string
+  4?: string
+  1: string
 }
 
 export interface SerializedToken {
@@ -20,7 +20,6 @@ export interface SerializedToken {
   decimals: number
   symbol?: string
   name?: string
-  projectLink?: string
 }
 
 export enum PoolIds {

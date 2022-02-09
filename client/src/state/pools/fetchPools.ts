@@ -65,7 +65,7 @@ export const fetchPoolsTotalStaking = async () => {
 
   const callsBnbPools = bnbPool.map((poolConfig) => {
     return {
-      address: tokens.wbnb.address,
+      address: tokens.weth.address,
       name: 'balanceOf',
       params: [getAddress(poolConfig.contractAddress)],
     }

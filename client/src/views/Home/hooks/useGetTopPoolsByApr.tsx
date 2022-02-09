@@ -12,7 +12,7 @@ export function usePoolsWithVault() {
   const pools = useMemo(() => {
     const activePools = poolsWithoutAutoVault.filter((pool) => !pool.isFinished)
     const cakePool = activePools.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, vaultKey: VaultKey.CakeVault }
+    const cakeAutoVault = { ...cakePool, vaultKey: VaultKey.CovalVault }
     const ifoPoolVault = { ...cakePool, vaultKey: VaultKey.IfoPool }
     const cakeAutoVaultWithApr = {
       ...cakeAutoVault,

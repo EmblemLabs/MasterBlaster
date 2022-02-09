@@ -113,12 +113,12 @@ export const useFetchIfoPool = (fetchCakePool = true) => {
 }
 
 export const useCakeVault = () => {
-  return useVaultPoolByKey(VaultKey.CakeVault)
+  return useVaultPoolByKey(VaultKey.CovalVault)
 }
 
 export const useVaultPools = () => {
   return {
-    [VaultKey.CakeVault]: useVaultPoolByKey(VaultKey.CakeVault),
+    [VaultKey.CovalVault]: useVaultPoolByKey(VaultKey.CovalVault),
     [VaultKey.IfoPool]: useVaultPoolByKey(VaultKey.IfoPool),
   }
 }
