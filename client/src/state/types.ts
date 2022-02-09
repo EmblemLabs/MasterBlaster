@@ -62,7 +62,7 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
 }
 
 export enum VaultKey {
-  CakeVault = 'cakeVault',
+  CovalVault = 'covalVault',
   IfoPool = 'ifoPool',
 }
 

@@ -49,7 +49,7 @@ import {
 
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
-import { ChainId, WETH } from '@pancakeswap/sdk'
+import { ChainId, WETH } from '@uniswap/sdk'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import ENS_PUBLIC_RESOLVER_ABI from '../config/abi/ens-public-resolver.json'
 import ENS_ABI from '../config/abi/ens-registrar.json'
@@ -165,7 +165,7 @@ export const useEasterNftContract = () => {
 export const useVaultPoolContract = (vaultKey: VaultKey): CakeVault | IfoPool => {
   const { library } = useActiveWeb3React()
   return useMemo(() => {
-    return vaultKey === VaultKey.CakeVault
+    return vaultKey === VaultKey.CovalVault
       ? getCakeVaultContract(library.getSigner())
       : getIfoPoolContract(library.getSigner())
   }, [library, vaultKey])
@@ -294,7 +294,7 @@ export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contrac
     // eslint-disable-next-line default-case
     switch (chainId) {
       case ChainId.MAINNET:
-      case ChainId.TESTNET:
+      case ChainId.RINKEBY:
         address = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
         break
     }
