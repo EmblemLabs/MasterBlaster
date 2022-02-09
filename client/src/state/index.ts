@@ -3,7 +3,6 @@ import { save, load } from 'redux-localstorage-simple'
 import cloneDeep from 'lodash/cloneDeep'
 import { useDispatch } from 'react-redux'
 import farmsReducer from './farms'
-import poolsReducer from './pools'
 import profileReducer, { initialState as profileInitialState } from './profile'
 import { updateVersion } from './global/actions'
 import user, { initialState as userInitialState } from './user/reducer'
@@ -25,7 +24,6 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {
     farms: farmsReducer,
-    pools: poolsReducer,
     profile: profileReducer,
 
     // Exchange
