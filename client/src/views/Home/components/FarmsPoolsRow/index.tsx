@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import styled from 'styled-components'
 import { Flex, Box, SwapVertIcon, IconButton } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { DeserializedPool } from 'state/types'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import useGetTopFarmsByApr from 'views/Home/hooks/useGetTopFarmsByApr'
-import { vaultPoolConfig } from 'config/constants/pools'
 import TopFarmPool from './TopFarmPool'
 import RowHeading from './RowHeading'
 
@@ -47,21 +45,6 @@ const FarmsPoolsRow = () => {
       clearInterval(timer.current)
     }
   }, [timer, isLoaded, startTimer])
-
-  const getPoolText = (pool: DeserializedPool) => {
-    if (pool.vaultKey) {
-      return t(vaultPoolConfig[pool.vaultKey].name)
-    }
-
-    if (pool.sousId === 0) {
-      return t('Manual CAKE')
-    }
-
-    return t('Stake %stakingSymbol% - Earn %earningSymbol%', {
-      earningSymbol: pool.earningToken.symbol,
-      stakingSymbol: pool.stakingToken.symbol,
-    })
-  }
 
   return (
     <div ref={observerRef}>
