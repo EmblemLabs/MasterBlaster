@@ -15,7 +15,7 @@ async function main() {
 
   // We get the contract to deploy
   const EmblemLPStaking = await hre.ethers.getContractFactory("EmblemLPStaking");
-  const emblemLPStaking = await EmblemLPStaking.deploy("0xcba3eae7f55d0f423af43cc85e67ab0fbf87b61c", "100000", "8780600");
+  const emblemLPStaking = await EmblemLPStaking.deploy("0x83dd89b40636f946a08975e97aa7a36d12dae551", "100000", "8780600");
 
   await emblemLPStaking.deployed();
 
@@ -24,9 +24,9 @@ async function main() {
   // await hre.run("verify:verify", {
   //   address: emblemLPStaking.address,
   //   constructorArguments: [
-  //     "0xcba3eae7f55d0f423af43cc85e67ab0fbf87b61c",
+  //     "0x83dd89b40636f946a08975e97aa7a36d12dae551",
   //     "100000",
-  //     "8788888",
+  //     "8780600",
   //   ],
   // })
 }
