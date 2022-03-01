@@ -84,9 +84,9 @@ contract EmblemLPStaking is Ownable {
         return _to.sub(_from);
     }
 
-    function pendingEmblemReward(uint256 _poolId) external view returns (uint256) {
+    function pendingEmblemReward(uint256 _poolId, address _user) external view returns (uint256) {
         PoolInfo storage pool = poolInfo[_poolId];
-        UserInfo storage user = userInfo[_poolId][msg.sender];
+        UserInfo storage user = userInfo[_poolId][_user];
         uint256 accEmblemPerShare = pool.accEmblemPerShare;
         uint256 lpSupply = pool.lpToken.balanceOf(address(this));
         if (block.number > pool.lastRewardBlock && lpSupply != 0) {

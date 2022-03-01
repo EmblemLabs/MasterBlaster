@@ -188,8 +188,8 @@ export const getPredictionsContract = (signer?: ethers.Signer | ethers.providers
 export const getChainlinkOracleContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(chainlinkOracleAbi, getChainlinkOracleAddress(), signer) as ChainlinkOracle
 }
-export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(MultiCallAbi, getMulticallAddress(), signer) as Multicall
+export const getMulticallContract = () => {
+  return getContract(MultiCallAbi, getMulticallAddress(), simpleRpcProvider) as Multicall
 }
 export const getBunnySpecialCakeVaultContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(bunnySpecialCakeVaultAbi, getBunnySpecialCakeVaultAddress(), signer) as BunnySpecialCakeVault

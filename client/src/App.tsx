@@ -6,7 +6,6 @@ import useEagerConnect from 'hooks/useEagerConnect'
 import useUserAgent from 'hooks/useUserAgent'
 import useScrollOnRouteChange from 'hooks/useScrollOnRouteChange'
 import { usePollCoreFarmData } from 'state/farms/hooks'
-import { useFetchProfile } from 'state/profile/hooks'
 import SubgraphHealthIndicator from 'components/SubgraphHealthIndicator'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -32,7 +31,6 @@ BigNumber.config({
 
 const App: React.FC = () => {
   useEagerConnect()
-  useFetchProfile()
   usePollCoreFarmData()
   useScrollOnRouteChange()
   useUserAgent()
