@@ -17,7 +17,8 @@
     "prepare": "husky install",
     "postinstall": "yarn run typechain",
     "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\"",
-    "deploy": "yarn run build && rm -rf ../docs/ && mv build/ ../docs/ && git add ../docs/ && git commit -m \"deploy pages\" && git push"
+    "deploy": "yarn run build && rm -rf ../docs/ && mv build/ ../docs/ && git add ../docs/ && git commit -m \"deploy pages\" && git push",
+    "homepage": "https://emblemlabs.github.io/MasterBlaster/"
   },
   "browserslist": {
     "production": [
