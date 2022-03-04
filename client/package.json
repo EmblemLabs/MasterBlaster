@@ -16,7 +16,8 @@
     "updateLPsAPR": "NODE_PATH=./src ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/updateLPsAPR.ts",
     "prepare": "husky install",
     "postinstall": "yarn run typechain",
-    "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\""
+    "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\"",
+    "deploy": "yarn run build && rm -rf ../docs/ && mv build/ ../docs/ && git add ../docs/ && git commit -m \"deploy pages\" && git push"
   },
   "browserslist": {
     "production": [
