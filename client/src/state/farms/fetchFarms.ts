@@ -26,8 +26,7 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]) => {
 
     // Total staked in LP, in quote token value
     const lpTotalInQuoteToken = quoteTokenAmountMc.times(new BigNumber(2))
-
-    const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
+    const allocPoint = info ? new BigNumber(info.perBlockEmblemAllocated?._hex) : BIG_ZERO
     const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
 
     return {
