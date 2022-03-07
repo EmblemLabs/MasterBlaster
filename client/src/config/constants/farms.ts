@@ -8,7 +8,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 0,
     lpSymbol: 'COVAL-ETH LP',
     lpAddresses: {
-      4: '0x5f09a3a0b60ec0aa2bbcc570cb637d33b18a89e6',
+      4: '0xc56b215c4448c6dd45eef76fb1c6d0258d2833ef',
       1: '',
     },
     token: serializedTokens.coval,

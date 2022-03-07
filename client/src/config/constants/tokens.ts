@@ -30,7 +30,7 @@ export const mainnetTokens = defineTokens({
 export const testnetTokens = defineTokens({
   weth: new Token(
     RINKEBY,
-    '0x680a652bf49c0237f44f03ae22b023d54dc531d4',
+    '0xc778417e063141139fce010982780140aa0cd5ab',
     18,
     'WETH',
     'Wrapped Ether',
