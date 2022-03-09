@@ -59,8 +59,8 @@ describe("Emblem Staking", function() {
     // 
     // alice's reward = (10 * 1) + ((10 / 3) * 1) = 13
     // bob's reward   =            ((10 / 3) * 2) * 1 = 6
-    expect(await emblemLpStaking.connect(alice).pendingEmblemReward(0)).to.be.eq(13)
-    expect(await emblemLpStaking.connect(bob).pendingEmblemReward(0)).to.be.eq(6)
+    expect(await emblemLpStaking.connect(alice).pendingEmblemReward(0, alice.address)).to.be.eq(13)
+    expect(await emblemLpStaking.connect(bob).pendingEmblemReward(0, bob.address)).to.be.eq(6)
 
     // harvest check
     // block number increased so by following above logic
