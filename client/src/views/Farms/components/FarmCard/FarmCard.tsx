@@ -64,7 +64,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const lpAddress = getAddress(farm.lpAddresses)
   const isPromotedFarm = farm.token.symbol === 'CAKE'
-  const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10);
+  const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
   return (
     <StyledCard isActive={isPromotedFarm}>
@@ -75,6 +75,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
           isCommunityFarm={farm.isCommunity}
           token={farm.token}
           quoteToken={farm.quoteToken}
+          pid={farm.pid}
         />
         {!removed && (
           <Flex justifyContent="space-between" alignItems="center">

@@ -10,10 +10,7 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [
-    mainnetTokens.weth,
-    mainnetTokens.coval,
-  ],
+  [ChainId.MAINNET]: [mainnetTokens.weth, mainnetTokens.coval],
   [ChainId.RINKEBY]: [testnetTokens.weth, testnetTokens.coval],
 }
 
@@ -47,12 +44,8 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.MAINNET]: [
-    [mainnetTokens.coval, mainnetTokens.weth],
-  ],
-  [ChainId.RINKEBY]: [
-    [testnetTokens.coval, testnetTokens.weth],
-  ],
+  [ChainId.MAINNET]: [[mainnetTokens.coval, mainnetTokens.weth]],
+  [ChainId.RINKEBY]: [[testnetTokens.coval, testnetTokens.weth]],
 }
 
 export const NetworkContextName = 'NETWORK'

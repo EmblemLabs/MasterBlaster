@@ -14,6 +14,17 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.coval,
     quoteToken: serializedTokens.weth,
   },
+  // if pid is over 100, means single token staking,
+  {
+    pid: 101,
+    lpSymbol: 'ETH LP',
+    lpAddresses: {
+      4: '0xc778417e063141139fce010982780140aa0cd5ab',
+      1: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+    },
+    token: serializedTokens.weth,
+    quoteToken: serializedTokens.weth,
+  },
 ]
 
 export default farms

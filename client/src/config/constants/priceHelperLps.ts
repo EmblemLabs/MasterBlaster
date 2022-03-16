@@ -1,6 +1,5 @@
 import { SerializedFarmConfig } from './types'
 
-const priceHelperLps: SerializedFarmConfig[] = [
-]
+const priceHelperLps: SerializedFarmConfig[] = []
 
 export default priceHelperLps

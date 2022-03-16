@@ -148,7 +148,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
   })
-  const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10);
+  const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   const lpAddress = getAddress(farm.lpAddresses)
   const bsc = getBscScanLink(lpAddress, 'address', chainId)
 

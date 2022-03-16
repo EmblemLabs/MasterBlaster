@@ -3,6 +3,10 @@ export default {
     4: '0x921E9245353564D27370BA081571Fd621aaFB592',
     1: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
   },
+  singleStaking: {
+    4: '0x7DB4D00cF42c9fDA881F5160f59D420F3E5EEcB6',
+    1: '',
+  },
   sousChef: {
     4: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
     1: '0x6ab8463a4185b80905e05a9ff80a2d6b714b9e95',
