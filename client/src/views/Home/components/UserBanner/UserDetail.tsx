@@ -50,7 +50,9 @@ const UserDetail = () => {
     <>
       <Desktop>
         <Box mr="24px">
-          <Sticker><StyledNoProfileAvatarIcon /></Sticker>
+          <Sticker>
+            <StyledNoProfileAvatarIcon />
+          </Sticker>
         </Box>
         <Flex flexDirection="column">
           {getDesktopHeading()}

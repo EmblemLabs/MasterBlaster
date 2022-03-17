@@ -25,7 +25,6 @@ export const vaultPoolConfig = {
   },
 } as const
 
-const pools: SerializedPoolConfig[] = [
-]
+const pools: SerializedPoolConfig[] = []
 
 export default pools

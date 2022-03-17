@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { Tag, Flex, Heading, Skeleton } from '@pancakeswap/uikit'
 import { Token } from '@uniswap/sdk'
 import { CommunityTag, CoreTag } from 'components/Tags'
-import { TokenPairImage } from 'components/TokenImage'
+import { TokenImage, TokenPairImage } from 'components/TokenImage'
+import { isPairFarm } from 'utils'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -11,6 +12,7 @@ export interface ExpandableSectionProps {
   isCommunityFarm?: boolean
   token: Token
   quoteToken: Token
+  pid: number
 }
 
 const Wrapper = styled(Flex)`
@@ -23,10 +25,21 @@ const MultiplierTag = styled(Tag)`
   margin-left: 4px;
 `
 
-const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm, token, quoteToken }) => {
+const CardHeading: React.FC<ExpandableSectionProps> = ({
+  lpLabel,
+  multiplier,
+  isCommunityFarm,
+  token,
+  quoteToken,
+  pid,
+}) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+      {isPairFarm(pid) ? (
+        <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+      ) : (
+        <TokenImage token={token} width={40} height={40} />
+      )}
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">

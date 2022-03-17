@@ -2,8 +2,7 @@ import getLpAddress from 'utils/getLpAddress'
 import tokens from './tokens'
 import { FarmAuctionBidderConfig } from './types'
 
-export const whitelistedBidders: FarmAuctionBidderConfig[] = [
-].map((bidderConfig) => ({
+export const whitelistedBidders: FarmAuctionBidderConfig[] = [].map((bidderConfig) => ({
   ...bidderConfig,
   lpAddress: getLpAddress(bidderConfig.tokenAddress, bidderConfig.quoteToken),
 }))

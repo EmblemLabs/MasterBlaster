@@ -24,7 +24,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
   //   ],
   //   [chainId, currency, wrapped],
   // )
-  return undefined;
+  return undefined
   // const [[ethPairState, ethPair], [busdPairState, busdPair], [busdEthPairState, busdEthPair]] = usePairs(tokenPairs)
 
   // return useMemo(() => {
