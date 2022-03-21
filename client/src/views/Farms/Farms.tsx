@@ -3,7 +3,6 @@ import { Route, useRouteMatch, useLocation, NavLink } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Image, Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@pancakeswap/uikit'
-import { ChainId } from '@uniswap/sdk'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
@@ -161,10 +160,10 @@ const Farms: React.FC = () => {
           return farm
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
+        const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
         const { cakeRewardsApr, lpRewardsApr } = isActive
-          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
+          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[chainId])
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
-
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
       })
 

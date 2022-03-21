@@ -13,10 +13,11 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.coval,
     quoteToken: serializedTokens.weth,
+    isSingle: false,
   },
-  // if pid is over 100, means single token staking,
+  // this is single token staking,
   {
-    pid: 101,
+    pid: 1,
     lpSymbol: 'ETH LP',
     lpAddresses: {
       4: '0xc778417e063141139fce010982780140aa0cd5ab',
@@ -24,6 +25,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.weth,
     quoteToken: serializedTokens.weth,
+    isSingle: true,
   },
 ]
 

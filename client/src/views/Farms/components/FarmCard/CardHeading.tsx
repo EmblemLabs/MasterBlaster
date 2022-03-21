@@ -4,7 +4,6 @@ import { Tag, Flex, Heading, Skeleton } from '@pancakeswap/uikit'
 import { Token } from '@uniswap/sdk'
 import { CommunityTag, CoreTag } from 'components/Tags'
 import { TokenImage, TokenPairImage } from 'components/TokenImage'
-import { isPairFarm } from 'utils'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -12,7 +11,7 @@ export interface ExpandableSectionProps {
   isCommunityFarm?: boolean
   token: Token
   quoteToken: Token
-  pid: number
+  isSingle?: boolean
 }
 
 const Wrapper = styled(Flex)`
@@ -31,11 +30,11 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   isCommunityFarm,
   token,
   quoteToken,
-  pid,
+  isSingle = false,
 }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      {isPairFarm(pid) ? (
+      {isSingle ? (
         <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
       ) : (
         <TokenImage token={token} width={40} height={40} />
