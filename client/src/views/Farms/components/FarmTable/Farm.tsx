@@ -5,7 +5,6 @@ import { useTranslation } from 'contexts/Localization'
 import { Text } from '@pancakeswap/uikit'
 import { Token } from '@uniswap/sdk'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { isPairFarm } from 'utils'
 import { TokenImage, TokenPairImage } from 'components/TokenImage'
 
 export interface FarmProps {
@@ -13,6 +12,7 @@ export interface FarmProps {
   pid: number
   token: Token
   quoteToken: Token
+  isSingle?: boolean
 }
 
 const Container = styled.div`
@@ -34,7 +34,7 @@ const TokenWrapper = styled.div`
   }
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pid }) => {
+const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pid, isSingle = false }) => {
   const { stakedBalance } = useFarmUser(pid)
   const { t } = useTranslation()
   const rawStakedBalance = getBalanceNumber(stakedBalance)
@@ -54,7 +54,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
   return (
     <Container>
       <TokenWrapper>
-        {isPairFarm(pid) ? (
+        {isSingle ? (
           <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={40} height={40} />
         ) : (
           <TokenImage token={token} width={40} height={40} />

@@ -73,6 +73,7 @@ interface FarmConfigBaseProps {
     earnLabel: string
     endBlock: number
   }
+  isSingle?: boolean
 }
 
 export interface SerializedFarmConfig extends FarmConfigBaseProps {
