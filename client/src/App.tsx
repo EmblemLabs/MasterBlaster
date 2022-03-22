@@ -16,12 +16,17 @@ import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
 import { useInactiveListener } from './hooks/useInactiveListener'
 import useSentryUser from './hooks/useSentryUser'
+import {
+  RedirectDuplicateTokenIds,
+  RedirectOldAddLiquidityPathStructure,
+} from './views/AddLiquidity/redirects'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
 const NotFound = lazy(() => import('./views/NotFound'))
+const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -50,6 +55,11 @@ const App: React.FC = () => {
             <Route path="/farms">
               <Farms />
             </Route>
+
+            {/* Add liquidity page */}
+            <Route exact path="/add" component={AddLiquidity} />
+            <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+            <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
 
             {/* 404 */}
             <Route component={NotFound} />

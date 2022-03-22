@@ -1,6 +1,6 @@
 // Constructing the two forward-slash-separated parts of the 'Add Liquidity' URL
 // Each part of the url represents a different side of the LP pair.
-import tokens from 'config/constants/tokens'
+// import tokens from 'config/constants/tokens'
 
 const getLiquidityUrlPathParts = ({
   quoteTokenAddress,
@@ -9,9 +9,11 @@ const getLiquidityUrlPathParts = ({
   quoteTokenAddress: string
   tokenAddress: string
 }): string => {
-  const wBnbAddress = tokens.weth.address
-  const firstPart = !quoteTokenAddress || quoteTokenAddress === wBnbAddress ? 'BNB' : quoteTokenAddress
-  const secondPart = !tokenAddress || tokenAddress === wBnbAddress ? 'BNB' : tokenAddress
+  // const wBnbAddress = tokens.weth.address
+  // const firstPart = !quoteTokenAddress || quoteTokenAddress === wBnbAddress ? 'BNB' : quoteTokenAddress
+  // const secondPart = !tokenAddress || tokenAddress === wBnbAddress ? 'BNB' : tokenAddress
+  const firstPart = quoteTokenAddress
+  const secondPart = tokenAddress
   return `${firstPart}/${secondPart}`
 }
 
