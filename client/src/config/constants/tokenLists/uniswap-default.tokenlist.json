@@ -371,7 +371,15 @@
       "symbol": "WETH",
       "decimals": 18,
       "chainId": 4,
-      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xc778417E063141139Fce010982780140Aa0cD5Ab/logo.png"
+      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+    },
+    {
+      "name": "Circuits of Value",
+      "address": "0x83dd89b40636f946a08975e97aa7a36d12dae551",
+      "symbol": "Coval",
+      "decimals": 8,
+      "chainId": 4,
+      "logoURI": "https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0x3D658390460295FB963f54dC0899cfb1c30776Df/logo.png"
     }
   ]
 }

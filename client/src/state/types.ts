@@ -59,6 +59,7 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
   userData?: DeserializedFarmUserData
+  isSingle?: boolean
 }
 
 export enum VaultKey {

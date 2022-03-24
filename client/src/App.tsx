@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 import useUserAgent from 'hooks/useUserAgent'
 import useScrollOnRouteChange from 'hooks/useScrollOnRouteChange'
+import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import SubgraphHealthIndicator from 'components/SubgraphHealthIndicator'
 import GlobalStyle from './style/Global'
@@ -16,10 +17,7 @@ import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
 import { useInactiveListener } from './hooks/useInactiveListener'
 import useSentryUser from './hooks/useSentryUser'
-import {
-  RedirectDuplicateTokenIds,
-  RedirectOldAddLiquidityPathStructure,
-} from './views/AddLiquidity/redirects'
+import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './views/AddLiquidity/redirects'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -35,6 +33,7 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
+  usePollBlockNumber()
   useEagerConnect()
   usePollCoreFarmData()
   useScrollOnRouteChange()
