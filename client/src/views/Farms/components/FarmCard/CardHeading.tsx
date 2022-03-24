@@ -34,7 +34,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      {isSingle ? (
+      {!isSingle ? (
         <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
       ) : (
         <TokenImage token={token} width={40} height={40} />

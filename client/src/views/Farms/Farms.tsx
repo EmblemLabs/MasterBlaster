@@ -273,6 +273,7 @@ const Farms: React.FC = () => {
         pid: farm.pid,
         token: farm.token,
         quoteToken: farm.quoteToken,
+        isSingle: farm.isSingle,
       },
       earned: {
         earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),

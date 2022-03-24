@@ -119,7 +119,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
         />
         {showExpandableSection && (
           <DetailsSection
-            removed={removed}
+            removed={removed || farm.isSingle}
             bscScanAddress={getBscScanLink(lpAddress, 'address', chainId)}
             infoAddress={`/info/pool/${lpAddress}`}
             totalValueFormatted={totalValueFormatted}

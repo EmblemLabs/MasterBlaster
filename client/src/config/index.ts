@@ -11,7 +11,7 @@ export const BSC_BLOCK_TIME = 3
 
 export const BASE_BSC_SCAN_URLS = {
   [ChainId.MAINNET]: 'https://etherscan.io',
-  [ChainId.RINKEBY]: 'https://rinkeby.etherscan.io/',
+  [ChainId.RINKEBY]: 'https://rinkeby.etherscan.io',
 }
 
 // CAKE_PER_BLOCK details

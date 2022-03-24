@@ -21,7 +21,8 @@ const deserializeFarmUserData = (farm: SerializedFarm): DeserializedFarmUserData
 }
 
 const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
-  const { lpAddresses, lpSymbol, pid, dual, multiplier, isCommunity, quoteTokenPriceBusd, tokenPriceBusd } = farm
+  const { lpAddresses, lpSymbol, pid, dual, multiplier, isCommunity, quoteTokenPriceBusd, tokenPriceBusd, isSingle } =
+    farm
 
   return {
     lpAddresses,
@@ -32,6 +33,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
     isCommunity,
     quoteTokenPriceBusd,
     tokenPriceBusd,
+    isSingle,
     token: deserializeToken(farm.token),
     quoteToken: deserializeToken(farm.quoteToken),
     userData: deserializeFarmUserData(farm),
