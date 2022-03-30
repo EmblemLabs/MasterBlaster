@@ -3,6 +3,7 @@ import { BigNumber } from 'ethers'
 
 import {
     EmblemLpStaking,
+    EmblemRewardStaking,
     EmblemTokenStaking,
     TestErc20
   } from '../../typechain'
@@ -37,4 +38,12 @@ export const emblemTokenStakingTestFixture = async function() {
     const currentBlockNumber = ethers.provider.getBlockNumber()
     const emblemTokenStaking = (await emblemTokenStakingFactory.deploy(emblemContract.address, 100, currentBlockNumber)) as EmblemTokenStaking
     return { emblemTokenStaking, stakingToken, rewardToken, emblemContract }
+}
+
+export const emblemRewardStakingTestFixture = async function() {
+    const emblemRewardStakingFactory = await ethers.getContractFactory('EmblemRewardStaking')
+    const { token0: emblemContract, lpToken, rewardToken } = await tokensFixture()
+    const currentBlockNumber = ethers.provider.getBlockNumber()
+    const emblemRewardStaking = (await emblemRewardStakingFactory.deploy(100, currentBlockNumber)) as EmblemRewardStaking
+    return { emblemRewardStaking, stakingToken: lpToken, rewardToken, emblemContract }
 }
