@@ -26,6 +26,8 @@ interface FarmCardActionsProps {
   addLiquidityUrl?: string
   cakePrice?: BigNumber
   lpLabel?: string
+  isSingle?: boolean
+  decimals?: number
 }
 
 const IconButtonWrapper = styled.div`
@@ -46,6 +48,8 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   addLiquidityUrl,
   cakePrice,
   lpLabel,
+  isSingle = false,
+  decimals = 18,
 }) => {
   const { t } = useTranslation()
   const { onStake } = useStakeFarms(pid)
@@ -56,7 +60,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const lpPrice = useLpTokenPrice(tokenName)
 
   const handleStake = async (amount: string) => {
-    await onStake(amount)
+    await onStake(amount, decimals)
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
@@ -66,7 +70,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   }
 
   const displayBalance = useCallback(() => {
-    const stakedBalanceBigNumber = getBalanceAmount(stakedBalance)
+    const stakedBalanceBigNumber = getBalanceAmount(stakedBalance, decimals)
     if (stakedBalanceBigNumber.gt(0) && stakedBalanceBigNumber.lt(0.0000001)) {
       return '<0.0000001'
     }
@@ -74,7 +78,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       return stakedBalanceBigNumber.toFixed(8, BigNumber.ROUND_DOWN)
     }
     return stakedBalanceBigNumber.toFixed(3, BigNumber.ROUND_DOWN)
-  }, [stakedBalance])
+  }, [stakedBalance, decimals])
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -89,6 +93,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       displayApr={displayApr}
       addLiquidityUrl={addLiquidityUrl}
       cakePrice={cakePrice}
+      decimals={decimals}
     />,
   )
   const [onPresentWithdraw] = useModal(
@@ -101,7 +106,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
       >
-        {t('Stake LP')}
+        {!isSingle ? t('Stake LP') : 'Stake'}
       </Button>
     ) : (
       <IconButtonWrapper>

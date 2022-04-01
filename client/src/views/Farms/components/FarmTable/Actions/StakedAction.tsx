@@ -46,6 +46,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   token,
   userDataReady,
   displayApr,
+  isSingle,
 }) => {
   const { t } = useTranslation()
   const { toastError } = useToast()
@@ -57,6 +58,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const location = useLocation()
   const lpPrice = useLpTokenPrice(lpSymbol)
   const cakePrice = usePriceCakeBusd()
+  const decimals = isSingle ? token.decimals : 18
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
@@ -68,7 +70,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   const handleStake = async (amount: string) => {
-    await onStake(amount)
+    await onStake(amount, decimals)
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
@@ -78,15 +80,15 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   }
 
   const displayBalance = useCallback(() => {
-    const stakedBalanceBigNumber = getBalanceAmount(stakedBalance)
+    const stakedBalanceBigNumber = getBalanceAmount(stakedBalance, decimals)
     if (stakedBalanceBigNumber.gt(0) && stakedBalanceBigNumber.lt(0.0000001)) {
       return stakedBalanceBigNumber.toFixed(10, BigNumber.ROUND_DOWN)
     }
     if (stakedBalanceBigNumber.gt(0) && stakedBalanceBigNumber.lt(0.0001)) {
-      return getFullDisplayBalance(stakedBalance).toLocaleString()
+      return getFullDisplayBalance(stakedBalance, decimals).toLocaleString()
     }
     return stakedBalanceBigNumber.toFixed(5, BigNumber.ROUND_DOWN)
-  }, [stakedBalance])
+  }, [stakedBalance, decimals])
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -101,6 +103,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       multiplier={multiplier}
       addLiquidityUrl={addLiquidityUrl}
       cakePrice={cakePrice}
+      decimals={isSingle ? token.decimals : 18}
     />,
   )
   const [onPresentWithdraw] = useModal(
@@ -158,7 +161,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
                   fontSize="12px"
                   color="textSubtle"
                   decimals={2}
-                  value={getBalanceNumber(lpPrice.times(stakedBalance))}
+                  value={getBalanceNumber(lpPrice.times(stakedBalance), decimals)}
                   unit=" USD"
                   prefix="~"
                 />
@@ -198,7 +201,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             variant="secondary"
             disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
           >
-            {t('Stake LP')}
+            {!isSingle ? t('Stake LP') : 'Stake'}
           </Button>
         </ActionContent>
       </ActionContainer>

@@ -36,6 +36,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
     isSingle,
     token: deserializeToken(farm.token),
     quoteToken: deserializeToken(farm.quoteToken),
+    rewardToken: farm.rewardToken ? deserializeToken(farm.rewardToken) : null,
     userData: deserializeFarmUserData(farm),
     tokenAmountTotal: farm.tokenAmountTotal ? new BigNumber(farm.tokenAmountTotal) : BIG_ZERO,
     lpTotalInQuoteToken: farm.lpTotalInQuoteToken ? new BigNumber(farm.lpTotalInQuoteToken) : BIG_ZERO,

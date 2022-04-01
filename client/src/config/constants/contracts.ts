@@ -1,6 +1,6 @@
 export default {
   masterChef: {
-    4: '0x921E9245353564D27370BA081571Fd621aaFB592',
+    4: '0x9ccf84Dc76F61924699225375916fefd162c596F',
     1: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
   },
   singleStaking: {

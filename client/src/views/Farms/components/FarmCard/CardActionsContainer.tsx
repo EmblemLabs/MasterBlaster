@@ -68,6 +68,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         lpLabel={lpLabel}
         cakePrice={cakePrice}
         addLiquidityUrl={addLiquidityUrl}
+        isSingle={farm.isSingle}
+        decimals={farm.isSingle ? farm.token.decimals : 18}
       />
     ) : (
       <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
@@ -80,7 +82,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     <Action>
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          COVAL
+          {farm.rewardToken ? farm.rewardToken.symbol : 'COVAL'}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}

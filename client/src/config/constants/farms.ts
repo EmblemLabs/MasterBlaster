@@ -18,13 +18,14 @@ const farms: SerializedFarmConfig[] = [
   // this is single token staking,
   {
     pid: 1,
-    lpSymbol: 'WETH LP',
+    lpSymbol: 'COVAL',
     lpAddresses: {
-      4: '0xc778417e063141139fce010982780140aa0cd5ab',
+      4: '0x83dD89B40636f946A08975E97Aa7A36d12daE551',
       1: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
     },
-    token: serializedTokens.weth,
-    quoteToken: serializedTokens.weth,
+    token: serializedTokens.coval,
+    quoteToken: serializedTokens.coval,
+    rewardToken: serializedTokens.usdt,
     isSingle: true,
   },
 ]
