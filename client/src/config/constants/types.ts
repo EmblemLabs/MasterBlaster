@@ -79,11 +79,13 @@ interface FarmConfigBaseProps {
 export interface SerializedFarmConfig extends FarmConfigBaseProps {
   token: SerializedToken
   quoteToken: SerializedToken
+  rewardToken?: SerializedToken
 }
 
 export interface DeserializedFarmConfig extends FarmConfigBaseProps {
   token: Token
   quoteToken: Token
+  rewardToken?: SerializedToken
 }
 
 interface PoolConfigBaseProps {

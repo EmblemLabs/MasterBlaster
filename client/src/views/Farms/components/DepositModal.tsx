@@ -35,6 +35,7 @@ interface DepositModalProps {
   displayApr?: string
   addLiquidityUrl?: string
   cakePrice?: BigNumber
+  decimals?: number
 }
 
 const DepositModal: React.FC<DepositModalProps> = ({
@@ -50,6 +51,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
   apr,
   addLiquidityUrl,
   cakePrice,
+  decimals = 18,
 }) => {
   const [val, setVal] = useState('')
   const { toastSuccess, toastError } = useToast()
@@ -57,8 +59,8 @@ const DepositModal: React.FC<DepositModalProps> = ({
   const [showRoiCalculator, setShowRoiCalculator] = useState(false)
   const { t } = useTranslation()
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
-  }, [max])
+    return getFullDisplayBalance(max, decimals)
+  }, [max, decimals])
 
   const lpTokensToStake = new BigNumber(val)
   const fullBalanceNumber = new BigNumber(fullBalance)
@@ -111,7 +113,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
   }
 
   return (
-    <Modal title={t('Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('Stake LP/Single tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}

@@ -1,14 +1,16 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
+import { BIG_TEN } from 'utils/bigNumber'
 import getGasPrice from 'utils/getGasPrice'
 
 const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
 }
 
-export const stakeFarm = async (masterChefContract, pid, amount) => {
+export const stakeFarm = async (masterChefContract, pid, amount, decimals) => {
   const gasPrice = getGasPrice()
-  const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
+  const timeDecimals = decimals ? BIG_TEN.pow(decimals) : DEFAULT_TOKEN_DECIMAL
+  const value = new BigNumber(amount).times(timeDecimals).toString()
   // if (pid === 0) {
   //   const tx = await masterChefContract.enterStaking(value, { ...options, gasPrice })
   //   const receipt = await tx.wait()

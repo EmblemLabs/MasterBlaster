@@ -2,11 +2,6 @@
   {
     "inputs": [
       {
-        "internalType": "contract IERC20",
-        "name": "_emblemContractAddress",
-        "type": "address"
-      },
-      {
         "internalType": "uint256",
         "name": "_emblemPerBlock",
         "type": "uint256"
@@ -142,7 +137,12 @@
       },
       {
         "internalType": "contract IERC20",
-        "name": "_lpToken",
+        "name": "_stakingToken",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "_rewardToken",
         "type": "address"
       },
       {
@@ -175,19 +175,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "emblemTokenContract",
-    "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -204,6 +191,11 @@
     "inputs": [
       {
         "internalType": "uint256",
+        "name": "_poolId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
         "name": "_amount",
         "type": "uint256"
       }
@@ -214,19 +206,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getLockedEmblemView",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -234,7 +213,7 @@
         "type": "uint256"
       }
     ],
-    "name": "getLpSupply",
+    "name": "getLockedEmblemView",
     "outputs": [
       {
         "internalType": "uint256",
@@ -267,6 +246,25 @@
       }
     ],
     "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_poolId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getStakingTokenSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -344,7 +342,12 @@
     "outputs": [
       {
         "internalType": "contract IERC20",
-        "name": "lpToken",
+        "name": "stakingToken",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "rewardToken",
         "type": "address"
       },
       {
